@@ -1,0 +1,23 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Recette :" ~ recipe.slug %}
+
+{% block body %}
+    <h1>
+        {{ recipe.title | upper }}
+    </h1>
+    <p>
+        {{ form_start(form)}}
+            <div class="d-flex">
+                {{ form_row(form.title)}}
+           
+                {{ form_row(form.slug)}}
+            
+                {{ form_row(form.duration)}}
+            </div>
+
+            {{ form_rest(form)}}
+
+        {{ form_end(form)}}
+    </p>
+{% endblock %}

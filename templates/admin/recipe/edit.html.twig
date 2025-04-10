@@ -7,6 +7,9 @@
         {{ recipe.title | upper }}
     </h1>
     <p>
+        <img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}" alt="" />
+    </p>
+    <p>
         {{ form_start(form)}}
             <div class="d-flex">
                 {{ form_row(form.title)}}

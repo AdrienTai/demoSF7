@@ -32,8 +32,11 @@ class RecipeType extends AbstractType
                 'class' => 'App\Entity\Category',
                 'expanded' => true,
                 'choice_label' => 'name',
+                'required' => false,
             ])
-            ->add('thumbnailFile', FileType::class, [])
+            ->add('thumbnailFile', FileType::class, [
+                'required' => false,
+            ])
             ->add('content', TextareaType::class, [
                 'empty_data' => ''
             ])

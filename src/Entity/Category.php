@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[UniqueEntity('name')]
@@ -22,6 +23,7 @@ class Category
     #[Assert\NotBlank]
     #[Assert\Length(min:5)]
     #[ORM\Column(length: 255)]
+    #[Groups('recipes.show')]
     private string $name = '';
 
     #[Assert\NotBlank]

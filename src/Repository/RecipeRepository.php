@@ -18,12 +18,19 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    public function paginateRecipes(int $page): PaginationInterface
+    public function paginateRecipes(int $page, ?int $userId): PaginationInterface
     {
-        return $this->paginator->paginate(
-            $this->createQueryBuilder('r')
+        $builder = $this->createQueryBuilder('r')
                 ->select('r', 'c')
-                ->leftJoin('r.category', 'c'),
+                ->leftJoin('r.category', 'c');
+        
+        if ($userId) {
+            $builder = $builder->andWhere('r.user = :user')
+                ->setParameter('user', $userId);
+        }
+
+        return $this->paginator->paginate(
+            $builder,
             $page,
             3,
             [
@@ -41,7 +48,7 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-     * @ return Recipe[]
+     * @return Recipe[]
      */
     public function findWithDurationLowerThan(int $duration): array 
     {

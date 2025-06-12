@@ -25,7 +25,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $faker->addProvider(new Restaurant($faker));
         $categories = ['Plats chauds', 'Dessert', 'Entrée', 'Vegan', 'Gourmand'];
 
-        foreach($categories as $cat) {
+        foreach ($categories as $cat) {
             $category = (new Category)
                 ->setName($cat)
                 ->setSlug($this->slugger->slug($cat))
@@ -36,7 +36,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference($cat, $category);
         }
 
-        for($i=0; $i<=10; $i++) {
+        for ($i=0; $i<=10; $i++) {
             $title = $faker->foodName;
             $recipe = (new Recipe())
                 ->setTitle($title)
